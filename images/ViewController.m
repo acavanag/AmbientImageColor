@@ -7,16 +7,27 @@
 //
 
 #import "ViewController.h"
+#import "ImageTest.h"
 
 @interface ViewController ()
-
+@property (nonatomic, strong) UIView *colorView;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.colorView = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 100, 100)];
+    self.colorView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.colorView];
+    
+    UIImage *image = [UIImage imageNamed:@"sunset1.jpg"];
+    UIColor *color = [ImageTest averageColorForImage:image];
+    
+    NSLog(@"%@", [color description]);
+    
+    self.colorView.backgroundColor = color;
 }
 
 - (void)didReceiveMemoryWarning {
